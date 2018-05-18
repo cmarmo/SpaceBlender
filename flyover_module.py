@@ -135,7 +135,7 @@ def getlinear_path(mesh):
         startblendery = yblenderextent
 
         #Extract the topopgraphic profile
-        topoprofile = mesh.basedem.arr[:,startpixelx]
+        topoprofile = mesh.basedem.arr[:,int(startpixelx)]
         yidx = np.arange(topoprofile.shape[0])
         mask = np.isnan(topoprofile)
         startz = topoprofile[~mask][0]
