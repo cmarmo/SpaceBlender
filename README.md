@@ -1,9 +1,9 @@
-#SpaceBlender
+# SpaceBlender
 
 
 Space Blender is a Blender plugin designed to generate flyover DTM videos from a 32-bit digital elevation model.
 
-##Requirements
+## Requirements
 Space Blender has the following dependencies:
 
 1. The Geospatial Data Abstraction Library (GDAL)
@@ -12,7 +12,7 @@ Space Blender has the following dependencies:
 
 These dependencies must be installed within the blender shipped version of Python 3.3.  See the installation section for instructions on meeting these dependencies
 
-##Command line Quick-Start
+## Command line Quick-Start
 For this quickstart, we make the assumption that Blender is already installed and accessible via the command line as `blender`.  If this is not the case, see installation (below).
 
 
@@ -38,7 +38,7 @@ where:
 *  `-a` A boolean flag defining whether stars are rendered.
 *  `-t` A texture applied to the input image, e.g. an orthoimage.
 
-###Example usage:
+### Example usage:
 While the usage examples all assume a mythical DEM 'inputdem.IMG', it is possible to use any GDAL support input data type.  The development team has tested Space Blender using `.IMG` and `.tif` file formats.
 
 * Render a default flyover image at low spatial resolution and the lowest possible rendering resolution.  This is an ideal way to test your installation.
@@ -53,7 +53,7 @@ blender -b -P space_blend.py -s 0.1 -r 180p inputdem.IMG
 blender -b -P space_blend.py -s inputdem.IMG
 ```
 
-##Installation
+## Installation
 The development team utilizes [Anaconda Python] (http://continuum.io/downloads) as their default python installation in part because of the ease of external package installation.  The installation described below makes use of Anaconda Python and replaces the python 3.3 that ships with Blender with an Anaconda installation.  This has been tested on Mac OS X and Scientific Linux.
 
 * Download and install Anaconda Python.
