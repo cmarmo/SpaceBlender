@@ -54,7 +54,7 @@ blender -b -P space_blend.py -s inputdem.IMG
 ```
 
 ## Installation
-The development team utilizes [Anaconda Python] (http://continuum.io/downloads) as their default python installation in part because of the ease of external package installation.  The installation described below makes use of Anaconda Python and replaces the python 3.3 that ships with Blender with an Anaconda installation.  This has been tested on Mac OS X and Scientific Linux.
+The development team utilizes [Anaconda Python](http://continuum.io/downloads) as their default python installation in part because of the ease of external package installation.  The installation described below makes use of Anaconda Python and replaces the python 3.3 that ships with Blender with an Anaconda installation.  This has been tested on Mac OS X and Scientific Linux.
 
 * Download and install Anaconda Python.
 *  At the time of the last update to this ReadMe, Blender was using Python version 3.3.5.  So, we will create a virutal environment that mirrors the Blender installation:
