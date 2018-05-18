@@ -74,4 +74,11 @@ conda install gdal
 * Create a new directory named `python`.
 * Copy the contents of the spaceblender python directory (created above) into the newly created python directory.  Top-level directories within the `python` directory should include: bin, conda-meta, docs, Examples, include, lib, share.
 
-
+### Linux: Python install from distro
+(Verified on Fedora27, Blender 2.79)
+* Install python3 and all the aforementioned python3 dependencies from your distro.
+* Clone the plugin repository in `~/.config/blender/2.79/scripts/addons/`
+* Launch 
+```
+blender -b -P ~/.config/blender/2.79/scripts/addons/SpaceBlender/space_blend.py inputdem.IMG
+```
