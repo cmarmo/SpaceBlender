@@ -11,6 +11,9 @@ from sys import platform as _platform
 import bpy
 from bpy.props import *
 from bpy_extras.io_utils import ImportHelper
+
+import addon_utils
+
 from SpaceBlender import blender_module
 from SpaceBlender import gdal_module
 from SpaceBlender import flyover_module
@@ -62,31 +65,43 @@ class SpaceBlender(object):
             # If user selected a colr we are going to run the gdal and merge processes
             # We need to dtermine which OS is being used and set the location of color files
             # and the merge script accordingly
+            paths = addon_utils.paths()
             if _platform == "linux" or _platform == "linux2":
             # linux
-                    # Strip out the image name to set texture location and append color choice.
+                       # Strip out the image name to set texture location and append color choice.
                 texture_location = self.filepath.split('/')[-1:]
                 texture_location = texture_location[0].split('.')[:1]
                 texture_location = os.getcwd()+'/'+texture_location[0]+'_'+self.color_pattern+'.tiff'
-                color_file = '/usr/share/blender/scripts/addons/SpaceBlender/color_maps/' + self.color_pattern + '.txt'
-                merge_location = '/usr/share/blender/scripts/addons/SpaceBlender/hsv_merge.py'
+                for path in paths:
+                    try:
+                        color_file = path + '/SpaceBlender/color_maps/' + self.color_pattern + '.txt'
+                        merge_location = path + '/SpaceBlender/hsv_merge.py'
+                    except:
+                        raise NameError("Could not load color maps (color_file) or merge script (merge_location)", color_file, merge_location)
             elif _platform == "darwin":
             # OS X
                         # Strip out the image name to set texture location and append color choice.
                 texture_location = self.filepath.split('/')[-1:]
                 texture_location = texture_location[0].split('.')[:1]
                 texture_location = os.getcwd()+'/'+texture_location[0]+'_'+self.color_pattern+'.tiff'
-                color_file = '/Applications/Blender/blender.app/Contents/MacOS/2.70/scripts/addons/SpaceBlender/color_maps/'\
-                    + self.color_pattern + '.txt'
-                merge_location = '/Applications/Blender/blender.app/Contents/MacOS/2.70/scripts/addons/SpaceBlender/hsv_merge.py'
+                for path in paths:
+                    try:
+                        color_file = path + '/SpaceBlender/color_maps/' + self.color_pattern + '.txt'
+                        merge_location = path + '/SpaceBlender/hsv_merge.py'
+                    except:
+                        raise NameError("Could not load color maps (color_file) or merge script (merge_location)", color_file, merge_location)
             elif _platform == "win32":
             # Windows.
                 # Strip out the image name to set texture location and append color choice.
                 texture_location = self.filepath.split('\\')[-1:]
                 texture_location = texture_location[0].split('.')[:1]
                 texture_location = os.getcwd()+'\\'+texture_location[0]+'_'+self.color_pattern+'.tiff'
-                color_file = '"'+'C:\\Program Files\\Blender Foundation\\Blender\\2.69\\scripts\\addons\\SpaceBlender\\color_maps\\'+self.color_pattern + '.txt'+'"'
-                merge_location = '"'+'C:\\Program Files\\Blender Foundation\\Blender\\2.69\scripts\\addons\\SpaceBlender\\hsv_merge.py'+'"'
+                for path in paths:
+                    try:
+                        color_file = '"'+ path + '\\SpaceBlender\\color_maps\\'+self.color_pattern + '.txt'+'"'
+                        merge_location = '"'+ path + '\\SpaceBlender\\hsv_merge.py'+'"'
+                    except:
+                        raise NameError("Could not load color maps (color_file) or merge script (merge_location)", color_file, merge_location)
 
             gdal = gdal_module.GDALDriver(dtm_location)
             gdal.gdal_hillshade(hill_shade)
