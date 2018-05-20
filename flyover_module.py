@@ -447,8 +447,8 @@ def set_environment():
         return
     curve.data.path_duration = 1440
     #Change the output to MPEG video with an MPEG-4 codec.
-    bpy.data.scenes["Scene"].render.image_settings.file_format = 'FFMPEG'
-    bpy.context.scene.render.ffmpeg.format = 'MPEG4'
+    bpy.data.scenes["Scene"].render.image_settings.file_format = 'AVI_RAW'
+    #bpy.context.scene.render.ffmpeg.format = 'MPEG4'
     #Set the video to output to the current working directory
     bpy.data.scenes["Scene"].render.filepath = os.getcwd()+'/'
     return
