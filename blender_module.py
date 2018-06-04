@@ -28,7 +28,7 @@ from bpy.ops import *
 from . import flyover_module as flyover
 from . import gdalio
 
-flyovers = {'linear':'LinearPattern'}
+flyovers = {'linear':'LinearPattern','circle':'CirclePattern','diamond':'DiamondPattern'}
 
 def placeobj(mesh, objname):
     """
